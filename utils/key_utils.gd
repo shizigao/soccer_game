@@ -3,6 +3,14 @@ extends Node
 enum Action {LEFT, RIGHT, UP, DOWN, SHOOT, PASS}
 
 const ACTIONS_MAP : Dictionary = {
+	Player.ControlScheme.CPU: {
+		Action.LEFT: "",
+		Action.RIGHT: "",
+		Action.UP: "",
+		Action.DOWN: "",
+		Action.SHOOT: "",
+		Action.PASS: "",
+	},
 	Player.ControlScheme.P1: {
 		Action.LEFT: "p1_left",
 		Action.RIGHT: "p1_right",
