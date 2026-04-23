@@ -25,9 +25,16 @@ func _process(delta: float) -> void:
 		var ease_time = duration_press / DURATION_MAX_BONUS
 		var bonus : float = ease(ease_time, EASE_REWARD_FACTOR)
 		var shoot_power : float = player.power * (1 + bonus)
+		# 如果射门方向为0，则将射门方向改为角色速度方向
+		if shoot_direction == Vector2.ZERO:
+			shoot_direction = player.velocity
+			# 如果角色速度为0，则将球向改为角色朝向
+			if shoot_direction == Vector2.ZERO:
+				shoot_direction = player.heading
 		# 归一化射门方向向量
 		shoot_direction = shoot_direction.normalized()
-		print(shoot_power, shoot_direction)
-		
-		# s
-		
+		# 将射门所需数据保存到state_data中
+		player.state_data.shoot_direction = shoot_direction
+		player.state_data.shoot_power = shoot_power
+		# 切换到射门状态
+		state_transition_requested.emit(Player.State.SHOOTING)

@@ -17,8 +17,12 @@ enum State {MOVING, TACKLING, RECOVERING, PREPARE_SHOOT, SHOOTING}
 
 ## 玩家朝向
 var heading : Vector2 = Vector2.RIGHT
+## 玩家当前的状态
 var current_state : PlayerState = null
+## 状态工厂
 var state_factory := PlayerStateFactory.new()
+## 状态数据
+var state_data : PlayerStateData = PlayerStateData.new()
 
 
 func _ready() -> void:

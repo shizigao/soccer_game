@@ -19,12 +19,11 @@ func _process(delta: float) -> void:
 		# 正弦函数形式的震荡
 		vx = cos(dribble_frequency * dribble_time) * dribble_intensity
 		vy = cos(dribble_frequency * dribble_time) * dribble_intensity
-		# 根据玩家向左还是向右，选择是否翻转足球精灵
-		if ball.carrier.velocity.x < 0:
-			ball.ball_sprite.flip_h = true
-		else:
+		# 播放动画
+		if ball.carrier.velocity.x > 0:
 			ball.ball_sprite.flip_h = false
-
+		elif ball.carrier.velocity.x < 0:
+			ball.ball_sprite.flip_h = true
 		ball.animation_player.play("roll")
 	else:
 		dribble_time = 0
