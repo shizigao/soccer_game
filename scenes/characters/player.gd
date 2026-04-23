@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 enum ControlScheme {CPU, P1, P2}
-enum State {MOVING, TACKLING, RECOVERING, PREPARE_SHOOT, SHOOTING}
+enum State {MOVING, TACKLING, RECOVERING, PREPARE_SHOOT, SHOOTING, PASSING}
 ## 玩家移动速度
 @export var speed : float = 80
 ## 射门力量
@@ -14,6 +14,8 @@ enum State {MOVING, TACKLING, RECOVERING, PREPARE_SHOOT, SHOOTING}
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var teammate_detection_area: Area2D = %TeammateDetectionArea
+
 
 ## 玩家朝向
 var heading : Vector2 = Vector2.RIGHT

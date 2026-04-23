@@ -4,10 +4,10 @@ class_name PlayerStateShooting
 func _enter_tree() -> void:
 	# 播放动画
 	animation_player.play("kick")
-	animation_player.animation_finished.connect(_on_animation_connect)
+	animation_player.animation_finished.connect(_on_animation_finished)
 
 
-func _on_animation_connect(anim_name: StringName):
+func _on_animation_finished(anim_name: StringName):
 	# 动画播放结束后射门
 	shoot()
 	# 状态转换

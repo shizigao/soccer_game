@@ -12,6 +12,8 @@ func get_fresh_state(state : Player.State) -> PlayerState:
 		return PlayerStatePrepareShoot.new()
 	elif state == Player.State.SHOOTING:
 		return PlayerStateShooting.new()
+	elif state == Player.State.PASSING:
+		return PlayerStatePassing.new()
 		
 	else :
 		printerr("player_state_factory can't return a non-existent PlayerState")

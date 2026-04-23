@@ -13,7 +13,9 @@ func _process(delta: float) -> void:
 	
 	# 处理玩家朝向
 	player.set_heading()
-	
+	# 处理玩家的队友检测区域的朝向
+	if player.velocity != Vector2.ZERO:
+		player.teammate_detection_area.rotation = player.velocity.angle()
 	# 根据角色速度播放相应动画
 	player.set_movement_animation()
 	
@@ -24,6 +26,9 @@ func _process(delta: float) -> void:
 	# 切换到预射门状态
 	if player.has_ball() and KeyUtils.is_action_just_pressed(player.controlscheme, KeyUtils.Action.SHOOT):
 		state_transition_requested.emit(Player.State.PREPARE_SHOOT)
+	# 切换到传球状态
+	if player.has_ball() and KeyUtils.is_action_just_pressed(player.controlscheme, KeyUtils.Action.PASS):
+		state_transition_requested.emit(Player.State.PASSING)
 	
 ## 如果角色是真人控制，则使用该函数控制角色移动
 func handle_human_movement():
@@ -32,3 +37,4 @@ func handle_human_movement():
 	# 计算角色速度Vector2D
 	player.velocity = direction * player.speed
 	
+## 处理玩家的队友检测区域的朝向
